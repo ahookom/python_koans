@@ -18,8 +18,20 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    sideList = sorted([a,b,c])
+    a,b,c = sideList
+    #check for non-positive sides
+    if a<=0:
+        raise TriangleError, 'not a triangle'
+    #check for triangle inequality theorem
+    if a+b <= c:
+        raise TriangleError
+    if a==b and b==c:
+        return 'equilateral'
+    elif a==b or b==c:
+        return 'isosceles'
+    else:
+        return 'scalene'
 
 
 # Error class used in part 2.  No need to change this code.
