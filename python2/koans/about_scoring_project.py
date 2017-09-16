@@ -35,8 +35,22 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
-
+    result = 0
+    if not len(dice):
+        return result
+    memo = dict.fromkeys(range(1,7),0)
+    for die in dice:
+        memo[die]+=1
+    if(memo[1]>=3):
+        memo[1]-=3
+        result+=1000
+    for num, appearances in memo.items():
+        if appearances>=3:
+            memo[num]-=3
+            result += 100*num
+    result += memo[1]*100
+    result += memo[5]*50
+    return result
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
